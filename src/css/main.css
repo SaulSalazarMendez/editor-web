@@ -1,0 +1,6 @@
+@import url('./paneles.css');
+@import url('./consola.css');
+
+body {
+    margin: 0;
+}

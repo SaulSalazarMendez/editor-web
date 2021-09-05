@@ -1,0 +1,32 @@
+#editor {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 50px);
+    margin: 0; 
+    padding: 0;
+    overflow: hidden;    
+}
+
+.gutter {
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+    cursor: col-resize;
+}
+
+iframe {
+    --color: #002635;
+    width: calc(100% - 10px);
+    height:100vh;
+    border: solid 5px var(--color);
+    max-height: calc(100vh - 60px);
+}
+
+#tabs-jar{
+    max-height: 100vh;
+    height: 100vh;
+}
