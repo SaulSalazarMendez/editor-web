@@ -1,4 +1,3 @@
-import { agregaMetada } from './agrega-metadata.js';
 import { setDatosTitulo } from './documento.js';
 import { logger, setDivConsola, setEstilosConsola } from './logger/loggerFunction.js';
 import { creaVistaPrevia } from './procesarVistaPrevia.js';
@@ -13,8 +12,7 @@ let codigo = location.href.split('#')[1];
 if (codigo) {
     let doc = JSON.parse( LZString.decompressFromBase64(codigo));
     setDatosTitulo(doc);
-    [html, css, js] = doc.codigo;
-    agregaMetada(doc);
+    [html, css, js] = doc.codigo;    
 } else {
     let localCodigo = localStorage.getItem('documento');
     if (localCodigo) {
