@@ -13,8 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "codejar": "^3.5.0",
-    "notificaciones-w3css": "^1.0.0",
-    "operaciones-archivos": "^1.0.0",
+    "notificaciones-w3css": "^1.0.1",
+    "operaciones-archivos": "^1.0.2",
     "split.js": "^1.6.4"
   },
   "devDependencies": {
