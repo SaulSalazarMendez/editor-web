@@ -50,7 +50,10 @@ function creaJson(json) {
 	let text = '';		
 	for (let key in json) {
 		let valor = json[key];
-		if (typeof valor == 'object') {
+		if (valor == null || valor == undefined) {
+			text += `<p><span class="key">${key}</span>: <span class="numero">${valor}</span></p>`;
+		}
+		else if (typeof valor == 'object' && valor != null && valor != undefined) {
 			text += `<details>
 	<summary>${key}: <span class="tipo">${valor.constructor.name}</span></summary>
 	${creaJson(valor)}
@@ -161,7 +164,10 @@ function setEventoLimpiar(limpiar) {
 function renderLinea(datos) {
 	let text = '';
 	for (let dato of datos) {
-		if (typeof dato == 'object') {
+		if (dato == null || dato == undefined) {
+			text += `<span class="numero">${dato}</span>&nbsp;`;
+		}
+		else if (typeof dato == 'object') {
 			if ( dato instanceof Date ) {
 				text += dato;
 			} else if (dato){
