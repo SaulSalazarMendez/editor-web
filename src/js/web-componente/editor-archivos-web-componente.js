@@ -136,6 +136,8 @@ class EditorArchivos extends HTMLElement {
         let contenedor = this.querySelector('.contenedor-'+indice);
         if (tab && contenedor) {
             this.activa(tab, contenedor);
+            let editor = contenedor.querySelector('.editor');
+            editor.focus();
         }
     }
 
