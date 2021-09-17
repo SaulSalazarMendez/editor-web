@@ -67,6 +67,18 @@ export const css = /*css*/`
     content: '\\25B6 ';
     color: red;
 }
+.linea-warning{    
+    color: white;
+    background-color: orange;
+    border: solid 1px #902d2d;
+    padding-left: 2px;
+    padding-right: 2px;
+    background-color: #907c7c;
+}
+.linea-warning::before{
+    content: '\\25B6 ';
+    color: orange;
+}
 div[class*="editor"] span::selection, div[class*="editor"]::selection {
     color: var(--color-seleccion);
     background: var(--fondo-seleccion);

@@ -1,6 +1,7 @@
 import { setDatosTitulo } from './documento.js';
 import { logger, setDivConsola, setEstilosConsola } from './logger/loggerFunction.js';
 import { creaVistaPrevia } from './procesarVistaPrevia.js';
+import { validaCodigo } from './validarCodigo.js';
 import './web-componente/editor-archivos-web-componente.js';
 
 let editor = document.querySelector('editor-archivos-codejar');
@@ -22,29 +23,11 @@ if (codigo) {
     }
 }
 
-let detalleError = {
-    linea: -1,
-    detalle: ''
-};
-/**
- * 
- * @param {string} text 
- */
-function addError(text) {
-    if (detalleError.linea == -1) {
-        return text;
-    }
-    let lineas = text.split('\n');
-    const linea = detalleError.linea -1;  
-    lineas[linea] = `<span class="linea-error" title="${detalleError.detalle}">${lineas[linea]}</span>`;
-    return lineas.join('\n');
-}
-
 const highlightJS = (editor) => {
     editor.textContent = editor.textContent;
     let code = editor.textContent;                
     let html = hljs.highlight(code, {language: 'js'}).value;
-    html = addError(html);
+    html = validaCodigo(html, code);
     editor.innerHTML = html;
 }
 
@@ -82,10 +65,10 @@ window.addEventListener('resize', ev => {
 editor.setAlto(`${window.innerHeight - tamanioBlanco}px`);
 
 editor.addEventListener('cambio-editor', ev => {    
-    creaVistaPrevia(editor, vistaPrevia, refiframe, detalleError);
+    creaVistaPrevia(editor, vistaPrevia, refiframe);
 });
 
-creaVistaPrevia(editor, vistaPrevia, refiframe, detalleError);
+creaVistaPrevia(editor, vistaPrevia, refiframe);
 
 export function getEditor() {
     return editor;
