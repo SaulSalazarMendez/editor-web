@@ -1,4 +1,4 @@
-import { logError } from "./logger/loggerFunction";
+import { logError } from "./logger/loggerFunction.js";
 
 let config = {
     forin: true,
@@ -15,7 +15,7 @@ let config = {
     evil: true,
     loopfunc: false,
     varstmt: true,
-    esversion: 6,
+    esversion: 8,
     undef:true,
     unused:true,
     curly: true
@@ -35,12 +35,11 @@ function addError(html, e) {
  */
 export function validaCodigo(html, codigo) {
     JSHINT(codigo, config);     
-    let res = JSHINT.data();
-    console.log(res, codigo);
+    let res = JSHINT.data();    
     if ( res.hasOwnProperty('errors')) {
         for(let e of res.errors) {
             html = addError(html, e);
-            logError(`Error: ${e.reason} Linea: ${e.line}`);
+            //logError(`Error: ${e.reason} Linea: ${e.line}`);
         }
     }
     return html;
