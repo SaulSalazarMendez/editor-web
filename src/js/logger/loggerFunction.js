@@ -189,7 +189,7 @@ function renderLinea(datos) {
 
 function validadDiv() {
     if (!div) {
-        throw 'Defina el div contenedor de la consola';
+        console.warn('Defina el div contenedor de la consola');
     }
 }
 
