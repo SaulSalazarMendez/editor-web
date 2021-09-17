@@ -39,3 +39,31 @@ export function abrirNuevo() {
     const codigo = '#N4IghgrgLg9gTiAXOa8QBoRQJZQgGxiRABVcCjMAzAUwGMALMJARgDYBmABjYBZ+WLAOy8WmOjAAm2AOZFEAbRAZlmEAF0AvkA==';    
     window.open(url+codigo, '_blank');
 }
+
+export function abrirEnCodepen(){
+    let div = document.createElement('div');
+    div.innerHTML = `
+    <form action="https://codepen.io/pen/define" 
+    method="POST" target="_blank">
+      <input id="data-input" type="hidden" name="data" value="">
+    <button type=submmit>
+    enviar
+    </button>
+    </form>
+    `;
+    let form = div.querySelector('form');
+    let input = form.querySelector('input');    
+    let doc = generarDocumento();
+    input.value = JSON.stringify({
+        title: doc.titulo,
+        html: doc.codigo[0],
+        css: doc.codigo[1],
+        js: doc.codigo[2]
+    });
+    document.body.append(form);
+    let enviar = form.querySelector('button');
+	enviar.click();
+	setTimeout(t =>{
+		form.remove();
+	},1);
+}

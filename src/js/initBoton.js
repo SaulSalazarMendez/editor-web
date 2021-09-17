@@ -1,5 +1,5 @@
 import { addNotificacion } from "./libs.js";
-import { generarDocumento, guardarCodigo } from "./documento.js";
+import { abrirEnCodepen, generarDocumento, guardarCodigo } from "./documento.js";
 
 let botonCompartir = document.querySelector('#compartir');
 botonCompartir.addEventListener('click', ev => {
@@ -80,4 +80,10 @@ botonComandos.addEventListener('click', ev => {
         mensaje: codigoAyuda,
         tiempo: 20000,
     })
+});
+
+
+let botonCodepen = document.querySelector('#codepen');
+botonCodepen.addEventListener('click', ev => {
+    abrirEnCodepen();
 });
