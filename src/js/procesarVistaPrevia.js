@@ -1,6 +1,7 @@
 import { addEventosGeneralesAWindow } from './comandos-generales.js';
 import { logError, logger} from './logger/loggerFunction.js';
-import {descargarArchivo} from './libs.js';
+import {descargarArchivo} 
+    from 'https://unpkg.com/operaciones-archivos@1.0.2/operaciones-archivos.js';
 
 /**
  * Regresa la linea con el error

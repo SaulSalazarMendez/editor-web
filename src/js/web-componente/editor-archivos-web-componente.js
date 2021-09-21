@@ -1,7 +1,9 @@
 import {html} from './htm.js';
 import {css} from './css.js';
-import { CodeJar } from '../libs.js';
-import { withLineNumbers } from '../libs.js';
+import {CodeJar} 
+    from 'https://unpkg.com/codejar@3.5.0/codejar.js';
+import { withLineNumbers } 
+    from 'https://unpkg.com/codejar@3.5.0/linenumbers.js';
 
 
 function createEditor(element, tipo, fcolor = null) {

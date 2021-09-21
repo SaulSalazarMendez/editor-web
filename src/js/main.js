@@ -1,4 +1,3 @@
-import './libs.js';
 import './initeditor.js';
 import './initPaneles.js';
 import './initBoton.js';

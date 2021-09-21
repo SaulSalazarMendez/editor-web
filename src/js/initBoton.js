@@ -1,4 +1,5 @@
-import { addNotificacion } from "./libs.js";
+import { addNotificacion } 
+  from "https://unpkg.com/notificaciones-w3css@1.0.1/notificaciones.js";
 import { abrirEnCodepen, generarDocumento, guardarCodigo } from "./documento.js";
 
 let botonCompartir = document.querySelector('#compartir');

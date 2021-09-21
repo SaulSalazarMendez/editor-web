@@ -4,21 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "rm -r -f dist/* && parcel serve -p 1234 src/index.html",
-    "build": "rm -r -f dist/* && parcel build src/index.html --public-url ./ --no-source-maps --no-minify && bash build.sh",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "vite",
+    "build": "rm -rf dist/ && vite build",
+    "serve": "vite preview"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "codejar": "^3.5.0",
-    "notificaciones-w3css": "^1.0.1",
-    "operaciones-archivos": "^1.0.2",
-    "split.js": "^1.6.4"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "cssnano": "^5.0.8",
-    "postcss": "^8.3.6"
+    "vite": "^2.5.4"
   }
 }
