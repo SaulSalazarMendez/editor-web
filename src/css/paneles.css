@@ -18,11 +18,9 @@
     cursor: col-resize;
 }
 
-iframe {
-    --color: #002635;
+iframe {    
     width: calc(100% - 10px);
-    height:100vh;
-    border: solid 5px var(--color);
+    height:100vh;    
     max-height: calc(100vh - 60px);
 }
 
