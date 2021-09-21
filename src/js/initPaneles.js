@@ -1,4 +1,4 @@
-let sizes = localStorage.getItem('split-sizes')
+let sizes = localStorage.getItem('split-sizes');
 
 if (sizes) {
     sizes = JSON.parse(sizes);
