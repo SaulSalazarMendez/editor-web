@@ -20,9 +20,8 @@ function createEditor(element, tipo, fcolor = null) {
 }
 
 const TEMAS = {
-    claro: 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/base16/edge-light.min.css',
+    claro: 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/mono-blue.min.css',
     oscuro: 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/base16/edge-dark.min.css'
-    //oscuro: 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/agate.min.css'    
 }
 
 class EditorArchivos extends HTMLElement {
