@@ -74,6 +74,13 @@ class EditorArchivos extends HTMLElement {
         })
         this.dispatchEvent(ev);
     }
+    swapTema() {
+        if (this.tema == 'claro') {
+            this.setTema('oscuro');
+        } else {
+            this.setTema('claro');
+        }
+    }
     setTema(tema) {
         this.tema = tema;
         let link = this.querySelector('#temacolor');

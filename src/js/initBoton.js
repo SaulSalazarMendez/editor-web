@@ -25,6 +25,7 @@ botonGuardar.addEventListener('click', ev => {
 
 
 let codigoAyuda = `
+<h3>Edición</h3>
 <table class="w3-table-all">
     <tr>
       <th>Comando</th>
@@ -47,6 +48,21 @@ let codigoAyuda = `
       <td>Descarga el contenido un archivo html.</td>      
     </tr>
     <tr>
+      <td>ctrl + &lt;</td>
+      <td>Decrementa la letra de los editores.</td>      
+    </tr>
+    <tr>
+      <td>ctrl + &gt;</td>
+      <td>Incrementa la letra de los editores.</td>      
+    </tr>
+</table>
+<h3>Focus</h3>
+<table class="w3-table-all">
+    <tr>
+    <th>Comando</th>
+    <th>Descripción</th>      
+    </tr>
+    <tr>
       <td>ctrl + 1</td>
       <td>Activa el editor html.</td>      
     </tr>
@@ -61,15 +77,7 @@ let codigoAyuda = `
     <tr>
       <td>ctrl + 4</td>
       <td>Activa la consola.</td>      
-    </tr>
-    <tr>
-      <td>ctrl + &lt;</td>
-      <td>Decrementa la letra de los editores.</td>      
-    </tr>
-    <tr>
-      <td>ctrl + &gt;</td>
-      <td>Incrementa la letra de los editores.</td>      
-    </tr>
+    </tr> 
 </table>
 `;
 

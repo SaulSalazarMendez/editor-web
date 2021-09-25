@@ -52,5 +52,10 @@ export function addEventosGeneralesAWindow(window){
             abrirNuevo();
             return false;
         }
+
+        if ( e.ctrlKey && e.key.toLowerCase() === 'k') {
+            editor.swapTema();
+            return false;
+        }
     };
 }
