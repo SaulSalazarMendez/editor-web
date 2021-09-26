@@ -49,6 +49,22 @@
         border-radius: 5px;
         height: 40px;
     }
+    button.disable{
+        filter: opacity(25%);
+        cursor: not-allowed;        
+    }
+    button.cambio {
+        position: relative;
+    }
+    button.cambio::after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0px;
+        border-bottom: 4px solid #f44336;
+        content: "";
+        border-radius: 0 0 3px 3px;
+    }
 </style>
 <body>
 <header>
@@ -64,6 +80,7 @@
         <button class="accion" id="ayuda" title="mostrar comandos">Comandos</button>
         <button class="accion" id="guardar" title="guardar como html">Guardar</button>
         <button class="accion" id="compartir" title="copiar url para compartir">Compartir</button>
+        <button class="accion disable" id="run" title="Ejecutar código">Run</button>
     </seccion>
 </header>
 <div id="editor">    

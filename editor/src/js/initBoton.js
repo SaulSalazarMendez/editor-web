@@ -20,7 +20,7 @@ botonCompartir.addEventListener('click', ev => {
 
 let botonGuardar = document.querySelector('#guardar');
 botonGuardar.addEventListener('click', ev => {
-    guardarCodigo();    
+    guardarCodigo();
 });
 
 

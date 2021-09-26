@@ -2,11 +2,12 @@ import { getEditor } from "./initeditor.js";
 import { addNotificacion } 
     from "https://unpkg.com/notificaciones-w3css@1.0.1/notificaciones.js";
 
-
-export function guardarCodigo() {    
+let botonGuardar = document.querySelector('#guardar');
+export function guardarCodigo() {
     const doc = generarDocumento();
     let documento = LZString.compressToBase64( JSON.stringify(doc) );
     localStorage.setItem('documento', documento);
+    botonGuardar.classList.remove('cambio');
     addNotificacion({
         tipo: 'w3-indigo',
         titulo: '&#10004; Ok',

@@ -25,15 +25,20 @@ function initIframe(iframe) {
     };
     iframe.contentWindow.console.log = logger;
 }
-
+let anteriorDoc = '';
+let botonGuardar = document.querySelector('#guardar');
 export function creaVistaPrevia(editor, vistaPrevia, refiframe) {
+    let [html, css, js] = editor.getTodoElCodigo();
+    let documento = JSON.stringify([html, css, js]);
+    if (anteriorDoc === documento) {
+        return;
+    }
+    anteriorDoc = documento;
+    botonGuardar.classList.add('cambio');
     vistaPrevia.innerHTML = "<iframe></iframe>";
-    
-    let iframe = vistaPrevia.querySelector('iframe');
-    //let iframe = document.createElement('iframe');
+    let iframe = vistaPrevia.querySelector('iframe');    
     refiframe = iframe;
-    initIframe(iframe);    
-    let [html, css, js] = editor.getTodoElCodigo();    
+    initIframe(iframe);
     let codigo = templateHtml(html, css, js);    
     iframe.contentDocument.open();
     try {
