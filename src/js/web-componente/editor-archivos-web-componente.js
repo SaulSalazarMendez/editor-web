@@ -5,8 +5,13 @@ import {CodeJar}
 import { withLineNumbers } 
     from 'https://unpkg.com/codejar@3.5.0/linenumbers.js';
 
-
-function createEditor(element, tipo, fcolor = null) {
+function getFuncion(funcion, numLinea) {
+    if (numLinea) {
+        return  withLineNumbers(funcion);
+    }
+    return funcion;
+}
+function createEditor(element, tipo, fcolor = null, numLinea = true) {
     const highlight = (editor) => {
         editor.textContent = editor.textContent;
         let code = editor.textContent;                
@@ -14,9 +19,9 @@ function createEditor(element, tipo, fcolor = null) {
         editor.innerHTML = html;
     }
     if (fcolor == null){
-        return CodeJar(element,  withLineNumbers(highlight) );
+        return CodeJar(element,  getFuncion(highlight, numLinea) );
     }
-    return CodeJar(element,  withLineNumbers(fcolor) );
+    return CodeJar(element,  getFuncion(fcolor, numLinea) );
 }
 
 const TEMAS = {
@@ -104,7 +109,7 @@ class EditorArchivos extends HTMLElement {
         editor.classList.add('contenedor-'+con);
         editor.setAttribute('contenedor', '');
         let div = editor.querySelector('div');
-        let jar = createEditor(div, dato.tipo, dato.fcolor);
+        let jar = createEditor(div, dato.tipo, dato.fcolor, dato.numLinea);
         jar.updateCode(dato.codigo);
         return {editor, jar};
     }
@@ -135,7 +140,8 @@ class EditorArchivos extends HTMLElement {
             tipo: '',
             codigo: '',
             icono: '',
-            fcolor: null
+            fcolor: null,
+            numLinea: true
         }
     }
 
