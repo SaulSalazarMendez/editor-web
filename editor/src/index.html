@@ -14,63 +14,6 @@
     <link rel="stylesheet" href="./css/main.css">      
     <link rel="shortcut icon" href="icono.svg" type="image/svg">
 </head>
-<style>    
-    header{
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        height: 50px;
-        background-color: #eee;
-    }
-    header .icono {
-        width: 50px;
-        padding-left: 10px;
-    }
-    header .seccion-titulo {
-        width: calc(50% - 50px);
-        padding-left: 10px;        
-    }
-    .seccion-titulo .titulo {
-        font-size: x-large;
-        font-weight: bold;
-    }
-    header .seccion-acciones{
-        width: 50%;
-        text-align: right;
-        padding: 5px;
-    }
-    .seccion-titulo input{
-        border: none;
-        outline: none;
-        background-color: #eee;
-        width: calc(100% - 10px);        
-    }
-    button.accion{
-        border-radius: 5px;
-        height: 40px;
-        font-weight: bold;
-    }
-    button.disable{
-        filter: opacity(25%);
-        cursor: not-allowed;        
-    }
-    button.cambio {
-        position: relative;
-    }
-    button.cambio::after {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0px;
-        border-bottom: 4px solid #f44336;
-        content: "";
-        border-radius: 0 0 3px 3px;
-    }
-    button.ejecutar {
-        background-color: #198754;
-        color: white;        
-    }
-</style>
 <body>
 <header>
     <section class="icono">
@@ -91,11 +34,12 @@
 <div id="editor">    
     <editor-archivos-codejar id="tabs-jar"></editor-archivos-codejar>
     <div id="panel">      
-        <div class="vista-previa"></div>
+        <div class="vista-previa" title="size: "></div>
     </div>    
 </div>
 <div class="consola">
-</div>    
+</div>
+<div id="size">1250 x 1000</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.0/split.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js"></script>

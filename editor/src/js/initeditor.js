@@ -1,4 +1,5 @@
 import { setDatosTitulo } from './documento.js';
+import { setSizeVistaPrevia } from './initPaneles.js';
 import { logger, setDivConsola, setEstilosConsola } from './logger/loggerFunction.js';
 import { creaVistaPrevia } from './procesarVistaPrevia.js';
 import { validaCodigo } from './validarCodigo.js';
@@ -73,6 +74,7 @@ export function creaVista() {
 }
 
 creaVista();
+setSizeVistaPrevia();
 
 export function getEditor() {
     return editor;
