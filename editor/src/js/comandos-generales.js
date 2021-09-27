@@ -1,5 +1,5 @@
 import { abrirNuevo, guardarCodigo } from "./documento.js";
-import { getEditor } from "./initeditor.js";
+import { creaVista, getEditor } from "./initeditor.js";
 import { muestraOcultaConsola } from "./logger/loggerFunction.js";
 import { descargaHtml } from "./procesarVistaPrevia.js";
 
@@ -55,6 +55,11 @@ export function addEventosGeneralesAWindow(window){
 
         if ( e.ctrlKey && e.key.toLowerCase() === 'k') {
             editor.swapTema();
+            return false;
+        }
+
+        if ( e.ctrlKey && e.key.toLowerCase() === 'e') {
+            creaVista();            
             return false;
         }
     };

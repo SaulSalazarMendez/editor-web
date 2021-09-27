@@ -65,10 +65,14 @@ window.addEventListener('resize', ev => {
 editor.setAlto(`${window.innerHeight - tamanioBlanco}px`);
 
 editor.addEventListener('cambio-editor', ev => {    
-    creaVistaPrevia(editor, vistaPrevia, refiframe);
+    //creaVista();
 });
 
-creaVistaPrevia(editor, vistaPrevia, refiframe);
+export function creaVista() {
+    creaVistaPrevia(editor, vistaPrevia, refiframe);
+}
+
+creaVista();
 
 export function getEditor() {
     return editor;

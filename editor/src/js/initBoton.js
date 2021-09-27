@@ -1,6 +1,7 @@
 import { addNotificacion } 
   from "https://unpkg.com/notificaciones-w3css@1.0.1/notificaciones.js";
 import { abrirEnCodepen, generarDocumento, guardarCodigo } from "./documento.js";
+import { creaVista } from "./initeditor.js";
 
 let botonCompartir = document.querySelector('#compartir');
 botonCompartir.addEventListener('click', ev => {
@@ -23,25 +24,25 @@ botonGuardar.addEventListener('click', ev => {
     guardarCodigo();
 });
 
-
-let codigoAyuda = `
-<h3>Edición</h3>
-<table class="w3-table-all">
+const tablaEdicion = `
     <tr>
-      <th>Comando</th>
-      <th>Descripción</th>      
+        <th colspan="2">Editor</th>       
     </tr>
     <tr>
       <td>ctrl + m</td>
-      <td>Abre un nuevo documento en blanco listo para editar.</td>      
+      <td>Abre un nuevo documento en blanco.</td>      
     </tr>
     <tr>
       <td>ctrl + s</td>
-      <td>Guardar el código en el explorador. <br>Este se cargara por defecto en el proximo inicio. Elimina el documento anterior.</td>      
+      <td>Guardar el código en el explorador.</td>      
     </tr>
     <tr>
-      <td>ctrl + z</td>
-      <td>Deshacer, aplica en el editor con focus.</td>      
+      <td>ctrl + e</td>
+      <td>Ejecutar.</td>      
+    </tr>
+    <tr>
+      <td>ctrl + k</td>
+      <td>Intercambiar tema de editor.</td>      
     </tr>
     <tr>
       <td>ctrl + d</td>
@@ -55,12 +56,10 @@ let codigoAyuda = `
       <td>ctrl + &gt;</td>
       <td>Incrementa la letra de los editores.</td>      
     </tr>
-</table>
-<h3>Focus</h3>
-<table class="w3-table-all">
+`;
+const tablaFocus = `
     <tr>
-    <th>Comando</th>
-    <th>Descripción</th>      
+    <th colspan="2">Focus</th>    
     </tr>
     <tr>
       <td>ctrl + 1</td>
@@ -78,7 +77,17 @@ let codigoAyuda = `
       <td>ctrl + 4</td>
       <td>Activa la consola.</td>      
     </tr> 
-</table>
+`;
+
+const codigoAyuda = `
+<div class="w3-padding" style="max-height: calc(100vh / 2); overflow: auto;"> 
+    <table class="w3-table-all">
+    ${tablaEdicion}
+    ${tablaFocus}  
+    </table>  
+</div>
+
+
 `;
 
 let botonComandos = document.querySelector('#ayuda');
@@ -87,7 +96,7 @@ botonComandos.addEventListener('click', ev => {
         tipo: 'w3-white',
         titulo: '&#x261B; Comandos',
         mensaje: codigoAyuda,
-        tiempo: 20000,
+        tiempo: 50000,
     })
 });
 
@@ -96,3 +105,9 @@ let botonCodepen = document.querySelector('#codepen');
 botonCodepen.addEventListener('click', ev => {
     abrirEnCodepen();
 });
+
+
+let botonEjecutar= document.querySelector('#run');
+botonEjecutar.addEventListener('click', ()=>{
+    creaVista();
+})

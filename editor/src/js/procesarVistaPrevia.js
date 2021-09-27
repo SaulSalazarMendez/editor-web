@@ -29,11 +29,11 @@ let anteriorDoc = '';
 let botonGuardar = document.querySelector('#guardar');
 export function creaVistaPrevia(editor, vistaPrevia, refiframe) {
     let [html, css, js] = editor.getTodoElCodigo();
-    let documento = JSON.stringify([html, css, js]);
-    if (anteriorDoc === documento) {
-        return;
-    }
-    anteriorDoc = documento;
+    // let documento = JSON.stringify([html, css, js]);
+    // if (anteriorDoc === documento) {
+    //     return;
+    // }
+    // anteriorDoc = documento;
     botonGuardar.classList.add('cambio');
     vistaPrevia.innerHTML = "<iframe></iframe>";
     let iframe = vistaPrevia.querySelector('iframe');    
