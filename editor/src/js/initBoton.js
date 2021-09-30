@@ -1,7 +1,8 @@
 import { addNotificacion } 
-  from "https://unpkg.com/notificaciones-w3css@1.0.1/notificaciones.js";
+  from "https://unpkg.com/notificaciones-w3css";
 import { abrirEnCodepen, generarDocumento, guardarCodigo } from "./documento.js";
 import { creaVista } from "./initeditor.js";
+import {Modal} from 'https://unpkg.com/modales-w3css';
 
 let botonCompartir = document.querySelector('#compartir');
 botonCompartir.addEventListener('click', ev => {
@@ -25,79 +26,83 @@ botonGuardar.addEventListener('click', ev => {
 });
 
 const tablaEdicion = `
-    <tr>
-        <th colspan="2">Editor</th>       
-    </tr>
-    <tr>
-      <td>ctrl + m</td>
-      <td>Abre un nuevo documento en blanco.</td>      
-    </tr>
-    <tr>
-      <td>ctrl + s</td>
-      <td>Guardar el código en el explorador.</td>      
-    </tr>
-    <tr>
-      <td>ctrl + e</td>
-      <td>Ejecutar.</td>      
-    </tr>
-    <tr>
-      <td>ctrl + k</td>
-      <td>Intercambiar tema de editor.</td>      
-    </tr>
-    <tr>
-      <td>ctrl + d</td>
-      <td>Descarga el contenido un archivo html.</td>      
-    </tr>
-    <tr>
-      <td>ctrl + &lt;</td>
-      <td>Decrementa la letra de los editores.</td>      
-    </tr>
-    <tr>
-      <td>ctrl + &gt;</td>
-      <td>Incrementa la letra de los editores.</td>      
-    </tr>
+<div class="w3-panel w3-bottombar w3-border-blue">
+<p>Editor</p>
+</div>
+<div class="w3-margin-top">
+  <span class="w3-indigo w3-border w3-padding-small w3-round-xxlarge">ctrl + m</span>
+  <span>Abre un nuevo documento en blanco.</span>    
+</div> 
+<div class="w3-margin-top">
+  <span class="w3-indigo w3-border w3-padding-small w3-round-xxlarge">ctrl + s</span>
+  <span>Guardar el código en el explorador.</span>    
+</div> 
+<div class="w3-margin-top">
+  <span class="w3-indigo w3-border w3-padding-small w3-round-xxlarge">ctrl + e</span>
+  <span>Ejecutar.</span>    
+</div> 
+<div class="w3-margin-top">
+  <span class="w3-indigo w3-border w3-padding-small w3-round-xxlarge">ctrl + k</span>
+  <span>Intercambiar tema de editor.</span>    
+</div> 
+<div class="w3-margin-top">
+  <span class="w3-indigo w3-border w3-padding-small w3-round-xxlarge">ctrl + d</span>
+  <span>Descarga el contenido un archivo html.</span>    
+</div> 
+<div class="w3-margin-top">
+  <span class="w3-indigo w3-border w3-padding-small w3-round-xxlarge">ctrl + &lt;</span>
+  <span>Decrementa la letra de los editores.</span>    
+</div>  
+<div class="w3-margin-top">
+  <span class="w3-indigo w3-border w3-padding-small w3-round-xxlarge">ctrl + &gt;</span>
+  <span>Incrementa la letra de los editores.</span>    
+</div>
 `;
 const tablaFocus = `
-    <tr>
-    <th colspan="2">Focus</th>    
-    </tr>
-    <tr>
-      <td>ctrl + 1</td>
-      <td>Activa el editor html.</td>      
-    </tr>
-    <tr>
-      <td>ctrl + 2</td>
-      <td>Activa el editor css.</td>      
-    </tr>
-    <tr>
-      <td>ctrl + 3</td>
-      <td>Activa el editor js.</td>      
-    </tr>
-    <tr>
-      <td>ctrl + 4</td>
-      <td>Activa la consola.</td>      
-    </tr> 
-`;
-
-const codigoAyuda = `
-<div class="w3-padding" style="max-height: calc(100vh / 2); overflow: auto;"> 
-    <table class="w3-table-all">
-    ${tablaEdicion}
-    ${tablaFocus}  
-    </table>  
+<div class="w3-panel w3-bottombar w3-border-blue">
+<p>Focus</p>
 </div>
-
-
+<div class="w3-margin-top">
+  <span class="w3-indigo w3-border w3-padding-small w3-round-xxlarge">ctrl + 1</span>
+  <span>Activa el editor html.</span>    
+</div>
+<div class="w3-margin-top">
+  <span class="w3-indigo w3-border w3-padding-small w3-round-xxlarge">ctrl + 2</span>
+  <span>Activa el editor css.</span>    
+</div>
+<div class="w3-margin-top">
+  <span class="w3-indigo w3-border w3-padding-small w3-round-xxlarge">ctrl + 3</span>
+  <span>Activa el editor js.</span>    
+</div>
+<div class="w3-margin-top">
+  <span class="w3-indigo w3-border w3-padding-small w3-round-xxlarge">ctrl + 4</span>
+  <span>Activa la consola.</span>    
+</div>   
 `;
+
+const codigoAyuda = `   
+<div class="w3-padding" style="max-height: calc(100vh / 2); overflow: auto; display: flex; flex-wrap: wrap;"> 
+    <div style="width: 50%;  margin-right: 5px;">
+    ${tablaEdicion}    
+    </div>  
+    <div style="width: 48%;">
+    ${tablaFocus}  
+    </div>
+</div>
+`;
+
+
 
 let botonComandos = document.querySelector('#ayuda');
 botonComandos.addEventListener('click', ev => {
-    addNotificacion({
-        tipo: 'w3-white',
-        titulo: '&#x261B; Comandos',
-        mensaje: codigoAyuda,
-        tiempo: 50000,
-    })
+    let modal = new Modal({
+        colorFondo: 'w3-black',
+        colorActivo: 'w3-indigo'
+    });
+    modal.titulo = 'Comandos';
+    modal.innerHtml = codigoAyuda;
+    modal.opciones.ancho = `90%`;
+    modal.open();
 });
 
 
