@@ -1,6 +1,6 @@
 import { getEditor } from "./initeditor.js";
 import { addNotificacion } 
-    from "https://unpkg.com/notificaciones-w3css@1.0.1/notificaciones.js";
+    from "https://unpkg.com/notificaciones-w3css";
 
 let botonGuardar = document.querySelector('#guardar');
 export function guardarCodigo() {
