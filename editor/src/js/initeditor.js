@@ -24,10 +24,20 @@ if (codigo) {
     }
 }
 
+async function cargaLibreria() {    
+    await import('https://unpkg.com/prismjs');
+    const pr = window.Prism;    
+    return {        
+        Prism: pr
+    };
+}
+
+let lib = await cargaLibreria();
+
 const highlightJS = (editor) => {
     editor.textContent = editor.textContent;
-    let code = editor.textContent;                
-    let html = hljs.highlight(code, {language: 'js'}).value;
+    let code = editor.textContent;
+    let html = lib.Prism.highlight(code, lib.Prism.languages.javascript, 'javascript');
     html = validaCodigo(html, code);
     editor.innerHTML = html;
 }
@@ -47,7 +57,7 @@ editor.setFiles([
     },
     {
         titulo: 'Js',
-        tipo: 'js',
+        tipo: 'javascript',
         codigo: js,
         fcolor: highlightJS,
         icono: '&#9733;'

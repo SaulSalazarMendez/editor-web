@@ -1,8 +1,8 @@
 export const css = /*css*/`
 /**host */
-
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&display=swap');
 .editor {   
-    font-family: "Source Code Pro", monospace;
+    font-family: 'Fira Mono',monospace;
     font-size: var(--tamanio-letra);
     font-weight: 400;
     min-height: 240px;

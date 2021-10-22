@@ -1,32 +1,44 @@
 import {html} from './htm.js';
 import {css} from './css.js';
-import {CodeJar} 
-    from 'https://unpkg.com/codejar@3.5.0/codejar.js';
-import { withLineNumbers } 
-    from 'https://unpkg.com/codejar@3.5.0/linenumbers.js';
+import * as color from './colores.js';
+
+async function cargaLibrerias() {
+    const cj = (await import('https://unpkg.com/codejar@3.5.0/codejar.js'));
+    const lines = (await import('https://unpkg.com/codejar@3.5.0/linenumbers.js'));    
+    await import('https://unpkg.com/prismjs');
+    const pr = window.Prism;
+    
+    return {
+        CodeJar: cj.CodeJar,
+        withLineNumbers: lines.withLineNumbers,        
+        Prism: pr
+    };
+}
+
+const libs = await cargaLibrerias();
 
 function getFuncion(funcion, numLinea) {
     if (numLinea) {
-        return  withLineNumbers(funcion);
+        return  libs.withLineNumbers(funcion);
     }
     return funcion;
 }
 function createEditor(element, tipo, fcolor = null, numLinea = true) {
     const highlight = (editor) => {
         editor.textContent = editor.textContent;
-        let code = editor.textContent;                
-        let html = hljs.highlight(code, {language: tipo}).value;
+        let code = editor.textContent;
+        let html = libs.Prism.highlight(code, libs.Prism.languages[tipo], tipo);
         editor.innerHTML = html;
     }
     if (fcolor == null){
-        return CodeJar(element,  getFuncion(highlight, numLinea) );
+        return libs.CodeJar(element,  getFuncion(highlight, numLinea) );
     }
-    return CodeJar(element,  getFuncion(fcolor, numLinea) );
+    return libs.CodeJar(element,  getFuncion(fcolor, numLinea) );
 }
 
 const TEMAS = {
-    claro: 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/mono-blue.min.css',
-    oscuro: 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/base16/edge-dark.min.css'
+    claro: 'https://cdn.jsdelivr.net/gh/PrismJS/prism-themes/themes/prism-gruvbox-light.css',
+    oscuro: 'https://cdn.jsdelivr.net/gh/PrismJS/prism-themes/themes/prism-nord.css'
 }
 
 class EditorArchivos extends HTMLElement {
@@ -40,7 +52,7 @@ class EditorArchivos extends HTMLElement {
             alto: '100vh',
             colorSeleccion: 'white',
             fondoSeleccion: '#446294',
-            tamanioLetra: 10
+            tamanioLetra: 12
         }
     }
     getTodoElCodigo() {
@@ -89,6 +101,7 @@ class EditorArchivos extends HTMLElement {
         this.tema = tema;
         let link = this.querySelector('#temacolor');
         link.setAttribute('href', TEMAS[this.tema]);
+        this.colorStyle.innerHTML = `${color[this.tema]}`;
     }
 
     creaTab(titulo, icono, con) {
@@ -105,7 +118,7 @@ class EditorArchivos extends HTMLElement {
     creaEditor(dato, con) {
         let editor = document.createElement('div');
         this.editores.append(editor);
-        editor.innerHTML = `<div id="file+${con}" class="editor hljs language-${dato.tipo}"></div>`;
+        editor.innerHTML = `<div id="file+${con}" class="editor language-${dato.tipo} principal"></div>`;
         editor.classList.add('contenedor-'+con);
         editor.setAttribute('contenedor', '');
         let div = editor.querySelector('div');
@@ -166,7 +179,10 @@ class EditorArchivos extends HTMLElement {
     render() {
         this.innerHTML =`
         <link rel="stylesheet" href="${TEMAS[this.tema]}" id="temacolor">
-        <style variables>        
+        <style variables>                
+        </style>
+        <style color>
+            ${color[this.tema]}
         </style>
         <style>
         ${css}
@@ -177,6 +193,7 @@ class EditorArchivos extends HTMLElement {
         this.editoresJar = [];
         this.tabs = this.querySelector('.tabs');
         this.variables = this.querySelector('[variables]');   
+        this.colorStyle = this.querySelector('[color]');   
         this.seteaVariables();     
         this.editores = this.querySelector('.editores');        
         for(let item of this.files) {            
@@ -191,7 +208,23 @@ class EditorArchivos extends HTMLElement {
             }
             this.contadorTab ++;
         }
+        this.quitaPropiedadColorLineas();
         this.addEventosEditoresJar();
+    }
+
+    quitaPropiedadColorLineas() {
+        let lineas = this.querySelectorAll('.codejar-linenumbers');
+        for(let linea of lineas) {
+            linea.style.color = '';
+        }
+    }
+
+    seteaTamanioLetraLineas() {
+        let lineas = this.querySelectorAll('.codejar-linenumbers');
+        for(let linea of lineas) {
+            linea.style.fontSize = `${this.variablesEditor.tamanioLetra}px`;
+            linea.style.lineHeight = 1.3;
+        }
     }
 
     seteaVariables() {
@@ -200,9 +233,10 @@ class EditorArchivos extends HTMLElement {
                 --alto: ${this.variablesEditor.alto};
                 --color-seleccion: ${this.variablesEditor.colorSeleccion};
                 --fondo-seleccion: ${this.variablesEditor.fondoSeleccion};
-                --tamanio-letra: ${this.variablesEditor.tamanioLetra}pt;
+                --tamanio-letra: ${this.variablesEditor.tamanioLetra}px;
             }
         `;
+        this.seteaTamanioLetraLineas();
     }
 
     setAlto(alto = '100vh') {

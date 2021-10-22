@@ -1,6 +1,6 @@
 export const html = /*html*/`
 <div class="variables">
-    <div class="tabs hljs">
+    <div class="tabs principal">
     </div>
     <div class="editores">    
     </div>
