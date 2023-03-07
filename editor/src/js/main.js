@@ -1,3 +1,4 @@
+import './servicio/estado-editor.js';
 import './initeditor.js';
 import './initPaneles.js';
 import './initBoton.js';

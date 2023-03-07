@@ -1,8 +1,9 @@
 import { addNotificacion } 
   from "https://unpkg.com/notificaciones-w3css";
 import { abrirEnCodepen, generarDocumento, guardarCodigo } from "./documento.js";
-import { creaVista } from "./initeditor.js";
+import { creaVista, getEditor } from "./initeditor.js";
 import {Modal} from 'https://unpkg.com/modales-w3css';
+import { getEstado, guardaEstado, setEstado } from "./servicio/estado-editor.js";
 
 let botonCompartir = document.querySelector('#compartir');
 botonCompartir.addEventListener('click', ev => {
@@ -116,3 +117,56 @@ let botonEjecutar= document.querySelector('#run');
 botonEjecutar.addEventListener('click', ()=>{
     creaVista();
 })
+
+function selecionaSelect(val1, val2) {
+  if (val1 === val2){
+    return 'selected'
+  }
+  return '';
+}
+
+function getHtmlConfig(){
+  const estado = getEstado();
+
+  return  /*html*/`
+<div class="w3-padding" style="max-height: calc(100vh / 2); overflow: auto;"> 
+  <div class="w3-panel">
+<form >
+    <div class="w3-margin-bottom">
+    <label for="tema"><b>Tema:</b></label>
+    <select class="w3-select" name="tema">
+    <option value="claro" ${selecionaSelect('claro', estado.tema)}>Claro</option>
+    <option value="oscuro" ${selecionaSelect('oscuro', estado.tema)}>Oscuro</option>
+    </select>
+    </div>
+    <div>
+    <label for="tema"><b>Validar código Javascript:<b></label>
+    <select class="w3-select" name="validarJs">
+    <option value="true" ${selecionaSelect(true, estado.validarJs)}>SI</option>
+    <option value="false" ${selecionaSelect(false, estado.validarJs)}>No</option>
+    </select>
+    </div>
+</form>
+  </div>
+</div>
+`;
+}
+let botonConfiguracion = document.querySelector('#configurar');
+botonConfiguracion.addEventListener('click', ()=> {
+  let modal = new Modal({
+    colorFondo: 'w3-black',
+    colorActivo: 'w3-indigo'
+  });
+  modal.titulo = 'Configuraciones';
+  modal.innerHtml = getHtmlConfig();
+  modal.opciones.ancho = `50%`;
+  modal.open().then(res => {
+    const data = {
+      validarJs: 'true' === res.data.validarJs,
+      tema: res.data.tema
+    }
+    setEstado(data);
+    guardaEstado();
+    getEditor().setTema(data.tema);
+  });
+});

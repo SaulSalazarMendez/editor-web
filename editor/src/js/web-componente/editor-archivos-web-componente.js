@@ -1,6 +1,7 @@
 import {html} from './htm.js';
 import {css} from './css.js';
 import * as color from './colores.js';
+import { guardaEstado, setEstado } from '../servicio/estado-editor.js';
 
 async function cargaLibrerias() {
     const cj = (await import('https://unpkg.com/codejar@3.5.0/codejar.js'));
@@ -102,6 +103,8 @@ class EditorArchivos extends HTMLElement {
         let link = this.querySelector('#temacolor');
         link.setAttribute('href', TEMAS[this.tema]);
         this.colorStyle.innerHTML = `${color[this.tema]}`;
+        setEstado({tema: tema})
+        guardaEstado();
     }
 
     creaTab(titulo, icono, con) {
