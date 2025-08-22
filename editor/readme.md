@@ -21,3 +21,9 @@ Hay dos formas de hacer esto:
 Se pueden agregar de dos maneras:
 - npm install
 - poniendola como un cdn por medio de unpack.
+
+
+## TODO
+
+- Separar el codigo para que el editor quede como un webcomponente
+- Separar el codigo para que la consola quede como un div y web componente
